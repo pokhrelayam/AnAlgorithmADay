@@ -43,7 +43,7 @@ public class MergeSort {
     }
 
     /**
-     *
+     * Merges the two sorted sub-lists. The two sorted sub-lists are inside the same original list, the formal parameter 'list'. 
      * @param list The list containing two sub-lists
      * @param low The lowest index of the sub-array
      * @param high The highest index of the sub-array
