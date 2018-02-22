@@ -23,7 +23,7 @@ public class InsertionSort {
             }
             list[j+1]=newPickedUpCard;                  // Move the newPickedUpCard to its correct position
 
-            
+
         }
     }
 }
