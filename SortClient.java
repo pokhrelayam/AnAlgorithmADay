@@ -16,7 +16,8 @@ public class SortClient {
             System.out.println(Arrays.toString(list));
             //BubbleSort.sort(list);
             //SelectionSort.sort(list);
-            InsertionSort.sort(list);
+            //InsertionSort.sort(list);
+	    MergeSort.sort(list);	
             System.out.println(Arrays.toString(list));
             
         }
