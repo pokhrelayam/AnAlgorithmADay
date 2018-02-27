@@ -1,6 +1,3 @@
-
-import java.util.Arrays;
-
 /**
  *  Implements Quick Sort Algorithm. Median of 3 numbers is selected as the pivot. 3 numbers are taken from the two ends and the middle.
  *  Complexity: Best/Average Case -> O(nlogn), Worst Case - O(n^2)
@@ -54,7 +51,9 @@ public class QuickSort2 {
     public static int getPivotIndex(int[] list, int low, int high) {
 
        //Initially, the median of 3 numbers (left end, right end, and middle) is selected as the pivot.
+       
        int pivotIdx=medianIdx(list,low,high);
+       
        //System.err.println(pivotIdx);
        int pivot = list[pivotIdx];
        int lastSmallNumIdx=low;
@@ -64,15 +63,21 @@ public class QuickSort2 {
        for(int i=low;i<=high;i++){
            if(list[i]<=pivot && i!=pivotIdx){
                swap(list, i, lastSmallNumIdx);
+               if(lastSmallNumIdx==pivotIdx)pivotIdx=i;
                lastSmallNumIdx++;
            }
        }
        
        swap(list,pivotIdx,lastSmallNumIdx);
-       System.err.println("The media index is : "+lastSmallNumIdx+ " \t"+Arrays.toString(list));
        return lastSmallNumIdx; 
     }
     
+    /**
+     * This method swaps two numbers within an array
+     * @param list  The list where swapping is done
+     * @param i The index of the first number
+     * @param j The index of the second number
+     */
     public static void swap(int[] list, int i, int j){
         int temp;
         temp=list[i];
