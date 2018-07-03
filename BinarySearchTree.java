@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /**
  * Binary Search Tree (BST) implementation with some features (methods) like
  * inOrder, preOrder, postOrder, LevelOrder traversals
@@ -144,6 +146,13 @@ public class BinarySearchTree {
 	}
 
 	/**
+	 * Prints the level-order traversal
+	 */
+	public void levelOrderTraversal() {
+		levelOrderTraversal(root);
+	}
+
+	/**
 	 * Recursive method for inOrderTraversal
 	 */
 	private void inOrderTraversal(Node root) {
@@ -177,6 +186,23 @@ public class BinarySearchTree {
 			System.out.print(root.value + " ");
 		}
 
+	}
+
+	/**
+	 * Iterative/Queue based method for levelOrderTraversal
+	 */
+	private void levelOrderTraversal(Node root) {
+		LinkedList<Node> queue = new LinkedList<Node>();
+		queue.add(root);
+		Node node;
+		while (!queue.isEmpty()) {
+			node = queue.remove();
+			if (node != null) {
+				System.out.print(node.value + " ");
+				queue.add(node.left);
+				queue.add(node.right);
+			}
+		}
 	}
 
 }
