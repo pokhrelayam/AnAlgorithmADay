@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Binary Search Tree (BST) implementation with some features (methods) like
@@ -15,8 +17,8 @@ public class BinarySearchTree {
 	private Node root;
 
 	/**
-	 * Node is the class representing tree node. Node may have left or right
-	 * childs. TreeNode holds integer data
+	 * Node is the class representing tree node. Node may have left or right childs.
+	 * TreeNode holds integer data
 	 *
 	 */
 	public class Node {
@@ -26,8 +28,7 @@ public class BinarySearchTree {
 
 		/**
 		 * 
-		 * @param data
-		 *            Contents/Value of each node
+		 * @param data Contents/Value of each node
 		 */
 		public Node(int data) {
 			value = data;
@@ -46,8 +47,7 @@ public class BinarySearchTree {
 	/**
 	 * Creates a new BST node in the right position and inserts key in that node
 	 * 
-	 * @param key
-	 *            The value to insert in the BST node
+	 * @param key The value to insert in the BST node
 	 */
 	public void insert(int key) {
 		root = insertHelper(root, key);
@@ -56,8 +56,7 @@ public class BinarySearchTree {
 	/**
 	 * Recursive method to add a node at the right location of the BST Tree
 	 * 
-	 * @param key
-	 *            The value to insert at the new BST node
+	 * @param key The value to insert at the new BST node
 	 */
 	private Node insertHelper(Node node, int key) {
 		if (node == null) {
@@ -111,8 +110,7 @@ public class BinarySearchTree {
 	/**
 	 * Find the min value of the subtree at the given node
 	 * 
-	 * @param node
-	 *            The root of subtree for which min value is to be found
+	 * @param node The root of subtree for which min value is to be found
 	 * @return the min value of the given subtree
 	 */
 	public int findMin(Node node) {
@@ -203,6 +201,64 @@ public class BinarySearchTree {
 				queue.add(node.right);
 			}
 		}
+		System.out.println();
+	}
+
+	/**
+	 * Converts the tree into a list of values stored in a particular order
+	 * (pre-order). Works for non-BST trees as well
+	 * 
+	 * @return List representation of the tree (Like Serialization)
+	 */
+	public List<Integer> toList() {
+		ArrayList<Integer> treeList = new ArrayList<Integer>();
+		treeToList(treeList, root);
+		return treeList;
+	}
+
+	/**
+	 * Helper method for the toList() method
+	 */
+	public void treeToList(ArrayList<Integer> treeList, Node node) {
+		if (node != null) {
+			treeList.add(node.value);
+			treeToList(treeList, node.left);
+			treeToList(treeList, node.right);
+		} else {
+			treeList.add(null);
+		}
+	}
+
+	/**
+	 * Constructs a tree(or BST) from a (pre-order) list of integers (Like
+	 * Deserialization) Example of List: [10, 7, 6, null, null, 8, null, null, 15,
+	 * 12, null, null, 18, null, null]
+	 * 
+	 * @param treeList The serialized list of the BST (from method toList())
+	 */
+	public BinarySearchTree(List<Integer> treeList) {
+
+		root = listToBstHelper(root,treeList, 0, treeList.size());
+
+	}
+	
+	
+	public Node listToBstHelper(Node node, List<Integer> treeList, int index, int length) {
+		
+		/**
+		 * TODO  IMPLEMENT THIS METHOD
+		 */
+		
+		if(index<length) {
+			if(treeList.get(index)!=null) {
+				node = new Node(treeList.get(index));
+			}
+			node.left=listToBstHelper(node.left,treeList,index+1,length);
+			node.right=listToBstHelper(node.right,treeList,index+2,length);
+		}
+		
+		return node;
+		
 	}
 
 }

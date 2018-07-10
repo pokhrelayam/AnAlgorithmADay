@@ -43,6 +43,9 @@ public class SortClient {
 			bst.insert(8);
 			bst.insert(18);
 			bst.levelOrderTraversal();
+			System.out.println(bst.toList());
+			BinarySearchTree bst2 = new BinarySearchTree(bst.toList());
+			bst2.levelOrderTraversal();
 			
 			
         }
