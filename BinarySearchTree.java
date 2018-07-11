@@ -1,6 +1,4 @@
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Binary Search Tree (BST) implementation with some features (methods) like
@@ -210,8 +208,8 @@ public class BinarySearchTree {
 	 * 
 	 * @return List representation of the tree (Like Serialization)
 	 */
-	public List<Integer> toList() {
-		ArrayList<Integer> treeList = new ArrayList<Integer>();
+	public LinkedList<Integer> toList() {
+		LinkedList<Integer> treeList = new LinkedList<Integer>();
 		treeToList(treeList, root);
 		return treeList;
 	}
@@ -219,7 +217,7 @@ public class BinarySearchTree {
 	/**
 	 * Helper method for the toList() method
 	 */
-	public void treeToList(ArrayList<Integer> treeList, Node node) {
+	private void treeToList(LinkedList<Integer> treeList, Node node) {
 		if (node != null) {
 			treeList.add(node.value);
 			treeToList(treeList, node.left);
@@ -236,25 +234,25 @@ public class BinarySearchTree {
 	 * 
 	 * @param treeList The serialized list of the BST (from method toList())
 	 */
-	public BinarySearchTree(List<Integer> treeList) {
-
-		root = listToBstHelper(root,treeList, 0, treeList.size());
-
+	public BinarySearchTree(LinkedList<Integer> treeList) {
+		root = listToBstHelper(root,treeList);
 	}
 	
-	
-	public Node listToBstHelper(Node node, List<Integer> treeList, int index, int length) {
+	/**
+	 * Helper class for constructing a tree(or BST) from a (pre-order) list of integers 
+	 * @param node Current node
+	 * @param treeList List of integers
+	 * @return Node created
+	 */
+	private Node listToBstHelper(Node node, LinkedList<Integer> treeList) {
 		
-		/**
-		 * TODO  IMPLEMENT THIS METHOD
-		 */
-		
-		if(index<length) {
-			if(treeList.get(index)!=null) {
-				node = new Node(treeList.get(index));
+		if(treeList.size()>0) {
+			Integer temp = treeList.remove();
+			if(temp!=null) {
+				node = new Node(temp);
+				node.left=listToBstHelper(node.left, treeList);
+				node.right=listToBstHelper(node.right, treeList);
 			}
-			node.left=listToBstHelper(node.left,treeList,index+1,length);
-			node.right=listToBstHelper(node.right,treeList,index+2,length);
 		}
 		
 		return node;
