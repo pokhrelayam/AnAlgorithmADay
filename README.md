@@ -1,7 +1,7 @@
 ## Implementation of CS Basics (Sorting Algorithms, Data Structures, Graph Algorithms)
 The following basic concepts have been implemented:
 
-#Sorting
+#### Sorting
 * Bubble Sort
 * Selection Sort
 * Insertion Sort
@@ -9,5 +9,5 @@ The following basic concepts have been implemented:
 * Quick Sort (One end as pivot)
 * Quick Sort (Median of three numbers as pivot)
 
-#Data Structures
+#### Data Structures
 * Binary Search Tree
