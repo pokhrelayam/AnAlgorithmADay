@@ -121,6 +121,33 @@ public class BinarySearchTree {
 	}
 
 	/**
+	 * Method to return the height of the BST
+	 * 
+	 * @return the height of the BST
+	 */
+	public int getHeight() {
+		return getHeightHelper(root);
+	}
+
+	/**
+	 * Helper class to find the height of the BST
+	 * 
+	 * @param Node of the Tree whose height is to be determined
+	 * @return
+	 */
+	private int getHeightHelper(Node node) {
+		if (node == null) {
+			return 0;
+		}
+		// Height of the left subtree
+		int leftHeight = getHeightHelper(node.left);
+		
+		// Height of the right subtree
+		int rightHeight = getHeightHelper(node.right);
+		return leftHeight > rightHeight ? leftHeight + 1 : rightHeight + 1;
+	}
+
+	/**
 	 * Prints the in-order traversal
 	 */
 	public void inOrderTraversal() {
@@ -235,28 +262,30 @@ public class BinarySearchTree {
 	 * @param treeList The serialized list of the BST (from method toList())
 	 */
 	public BinarySearchTree(LinkedList<Integer> treeList) {
-		root = listToBstHelper(root,treeList);
+		root = listToBstHelper(root, treeList);
 	}
-	
+
 	/**
-	 * Helper class for constructing a tree(or BST) from a (pre-order) list of integers 
-	 * @param node Current node
+	 * Helper class for constructing a tree(or BST) from a (pre-order) list of
+	 * integers
+	 * 
+	 * @param node     Current node
 	 * @param treeList List of integers
 	 * @return Node created
 	 */
 	private Node listToBstHelper(Node node, LinkedList<Integer> treeList) {
-		
-		if(treeList.size()>0) {
+
+		if (treeList.size() > 0) {
 			Integer temp = treeList.remove();
-			if(temp!=null) {
+			if (temp != null) {
 				node = new Node(temp);
-				node.left=listToBstHelper(node.left, treeList);
-				node.right=listToBstHelper(node.right, treeList);
+				node.left = listToBstHelper(node.left, treeList);
+				node.right = listToBstHelper(node.right, treeList);
 			}
 		}
-		
+
 		return node;
-		
+
 	}
 
 }

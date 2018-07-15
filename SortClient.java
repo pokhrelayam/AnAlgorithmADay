@@ -30,8 +30,8 @@ public class SortClient {
 			 *					  7     15
 			 *					 / \   /  \
 			 *                  6   8 12   18
-			 *  		 					
-			 * 
+			 *  		 					\
+			 * 								25
 			 * 
 			*/
 			
@@ -43,12 +43,13 @@ public class SortClient {
 			bst.insert(6);
 			bst.insert(8);
 			bst.insert(18);
+			bst.insert(25);
 			bst.levelOrderTraversal();
 			LinkedList<Integer> treeList = bst.toList();
 			System.out.println(treeList);
 			BinarySearchTree bst2 = new BinarySearchTree(treeList);
 			bst2.levelOrderTraversal();
-			
+			System.out.println(bst2.getHeight());
 			
         }
 }
